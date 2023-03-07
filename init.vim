@@ -15,7 +15,6 @@ set nocindent
 set softtabstop=4
 set termencoding=utf-8
 set number
-set ruler
 set incsearch
 set autowrite
 set mouse=a
@@ -34,6 +33,9 @@ nmap tn :tnext<CR>
 nmap tp :tprevious<CR>
 nmap tw <ESC><C-w>k:q<CR>
 nmap ti :Nt<CR>
+vnoremap <C-x> "+x
+vnoremap <C-c> "+y
+imap <C-v> <Esc>"+p
 
 inoremap jj <Esc>
 
@@ -46,6 +48,7 @@ Plug 'preservim/nerdtree'
 " quick edit
 Plug 'hrp/EnhancedCommentify'
 Plug 'terryma/vim-expand-region'
+Plug 'ludovicchabant/vim-gutentags'
 
 " git
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -55,7 +58,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
 " python
-Plug 'python-mode/python-mode'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -74,3 +77,13 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeMouseMode = 1
 
 command Nt NERDTree
+
+" gutentags
+let g:gutentags_cache_dir = '~/.cache/gutentags'
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_project_root = ['.root', '.git', '.hg', '.svn', '.project', '.projectile', '.root', '.git', '.hg', '.svn', '.project', '.projectile']
+let g:gutentags_ctags_extra_args = ['--fields=+l', '--extra=+q']
+
+if !isdirectory(g:gutentags_cache_dir)
+    silent! call mkdir(g:gutentags_cache_dir, 'p')
+endif
