@@ -60,6 +60,9 @@ Plug 'vim-airline/vim-airline'
 " python
 Plug 'davidhalter/jedi-vim'
 
+" Java
+Plug 'mfussenegger/nvim-jdtls'
+
 call plug#end()
 
 " NERDTree
