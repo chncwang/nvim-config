@@ -63,6 +63,9 @@ Plug 'davidhalter/jedi-vim'
 " Java
 Plug 'mfussenegger/nvim-jdtls'
 
+" Copilot
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " NERDTree
