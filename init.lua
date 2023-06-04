@@ -55,30 +55,33 @@ require('packer').startup(function()
 
   -- file explorer
   use 'preservim/nerdtree'
-  
+
   -- quick edit
   use 'hrp/EnhancedCommentify'
   use 'terryma/vim-expand-region'
-  
+
   -- git
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'tpope/vim-fugitive'
-  
+
   -- interface
   use 'vim-airline/vim-airline'
-  
+
   -- python
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'dense-analysis/ale'
-  
+
   -- Java
   use 'mfussenegger/nvim-jdtls'
-  
+
   -- Copilot
   use 'github/copilot.vim'
+
+  -- Syntax Highlighting
+  use 'sheerun/vim-polyglot'
 end)
 
 -- NERDTree
@@ -134,3 +137,6 @@ vim.g.ale_fixers = {
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_flake8_options = '--max-line-length=120'
 vim.g.ale_python_black_options = '--line-length=120'
+
+-- python-mode
+vim.g.pymode_options_max_line_length = 120
