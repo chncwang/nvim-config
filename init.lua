@@ -50,6 +50,9 @@ map('i', 'jj', '<Esc>', options)
 vim.cmd([[packadd packer.nvim]])
 
 require('packer').startup(function()
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+
   -- file explorer
   use 'preservim/nerdtree'
   
