@@ -66,7 +66,7 @@ require('packer').startup(function()
   use 'vim-airline/vim-airline'
   
   -- python
-  use 'davidhalter/jedi-vim'
+  use 'neovim/nvim-lspconfig'
   
   -- Java
   use 'mfussenegger/nvim-jdtls'
@@ -102,3 +102,7 @@ vim.api.nvim_exec([[
     silent! call mkdir(g:gutentags_cache_dir, 'p')
   endif
 ]], false)
+
+-- LSP Config
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup{}
