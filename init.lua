@@ -56,7 +56,6 @@ require('packer').startup(function()
   -- quick edit
   use 'hrp/EnhancedCommentify'
   use 'terryma/vim-expand-region'
-  use 'ludovicchabant/vim-gutentags'
   
   -- git
   use 'Xuyuanp/nerdtree-git-plugin'
@@ -67,6 +66,9 @@ require('packer').startup(function()
   
   -- python
   use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
   
   -- Java
   use 'mfussenegger/nvim-jdtls'
@@ -91,18 +93,28 @@ vim.g.NERDTreeMouseMode = 1
 
 vim.cmd([[command Nt NERDTree]])
 
--- gutentags
-vim.g.gutentags_cache_dir = '~/.cache/gutentags'
-vim.g.gutentags_ctags_tagfile = '.tags'
-vim.g.gutentags_project_root = {'.root', '.git', '.hg', '.svn', '.project', '.projectile', '.root', '.git', '.hg', '.svn', '.project', '.projectile'}
-vim.g.gutentags_ctags_extra_args = {'--fields=+l', '--extra=+q'}
-
-vim.api.nvim_exec([[
-  if !isdirectory(expand(g:gutentags_cache_dir))
-    silent! call mkdir(g:gutentags_cache_dir, 'p')
-  endif
-]], false)
-
 -- LSP Config
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
+
+-- nvim-cmp setup
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
+    },
+    mapping = {
+        ['<C-y>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        }),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<C-space>'] = cmp.mapping.complete(),
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+    },
+})
