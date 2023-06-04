@@ -72,6 +72,7 @@ require('packer').startup(function()
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
+  use 'dense-analysis/ale'
   
   -- Java
   use 'mfussenegger/nvim-jdtls'
@@ -121,3 +122,15 @@ cmp.setup({
         { name = 'buffer' },
     },
 })
+
+-- ale
+vim.g.ale_linters = {
+    python = {'flake8'}
+}
+
+vim.g.ale_fixers = {
+    python = {'black'}
+}
+vim.g.ale_fix_on_save = 1
+vim.g.ale_python_flake8_options = '--max-line-length=120'
+vim.g.ale_python_black_options = '--line-length=120'
