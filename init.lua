@@ -129,7 +129,7 @@ vim.g.ale_linters = {
 }
 
 vim.g.ale_fixers = {
-    python = {'black'}
+    python = {'black', 'isort'}
 }
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_flake8_options = '--max-line-length=120'
