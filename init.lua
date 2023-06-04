@@ -137,6 +137,3 @@ vim.g.ale_fixers = {
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_flake8_options = '--max-line-length=120'
 vim.g.ale_python_black_options = '--line-length=120'
-
--- python-mode
-vim.g.pymode_options_max_line_length = 120
