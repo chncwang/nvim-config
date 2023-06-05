@@ -103,6 +103,7 @@ vim.cmd([[command Nt NERDTree]])
 -- LSP Config
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
+map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
 
 -- nvim-cmp setup
 local cmp = require('cmp')
