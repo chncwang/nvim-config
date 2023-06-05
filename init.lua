@@ -39,6 +39,7 @@ map('n', 'tn', ':tnext<CR>', options)
 map('n', 'tp', ':tprevious<CR>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
 map('n', 'ti', ':Nt<CR>', options)
+map('n', 'tt', ':split | terminal<CR>', options)
 map('v', '<C-x>', '"+x', options)
 map('v', '<C-c>', '"+y', options)
 map('i', '<C-v>', '<Esc>"+p', options)
@@ -126,6 +127,7 @@ cmp.setup({
         { name = 'buffer' },
     },
 })
+map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
 
 -- ale
 vim.g.ale_linters = {
@@ -138,3 +140,7 @@ vim.g.ale_fixers = {
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_flake8_options = '--max-line-length=120'
 vim.g.ale_python_black_options = '--line-length=120'
+vim.g.ale_echo_msg_error_str = '%code: %%s'
+vim.o.textwidth = 120
+vim.o.wrap = true
+map('n', '<leader>a', ':ALEDetail<CR>', options)
