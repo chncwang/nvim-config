@@ -38,7 +38,7 @@ map('n', 'tr', '<C-w><C-r>', options)
 map('n', 'tn', ':tnext<CR>', options)
 map('n', 'tp', ':tprevious<CR>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
-map('n', 'ti', ':Nt<CR>', options)
+map('n', 'ti', ':Nt<CR>:Vista<CR>', options)
 map('n', 'tt', ':split | terminal<CR>', options)
 map('v', '<C-x>', '"+x', options)
 map('v', '<C-c>', '"+y', options)
@@ -83,6 +83,9 @@ require('packer').startup(function()
 
   -- Syntax Highlighting
   use 'sheerun/vim-polyglot'
+
+  -- Tag List
+  use 'liuchengxu/vista.vim'
 end)
 
 -- NERDTree
