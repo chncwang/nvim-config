@@ -70,10 +70,8 @@ require('packer').startup(function()
 
   -- python
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
   use 'dense-analysis/ale'
+  use 'neoclide/coc.nvim'
 
   -- Java
   use 'mfussenegger/nvim-jdtls'
@@ -108,34 +106,13 @@ vim.cmd([[command Nt NERDTree]])
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
-
--- nvim-cmp setup
-local cmp = require('cmp')
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-        end,
-    },
-    mapping = {
-        ['<C-y>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<C-space>'] = cmp.mapping.complete(),
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
-    },
-})
 map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
 
 -- ale
 vim.g.ale_linters = {
     python = {'flake8'}
 }
+vim.g.syntactic_python_checkers = {'flake8'}
 
 vim.g.ale_fixers = {
     python = {'black', 'isort'}
