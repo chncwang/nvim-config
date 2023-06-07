@@ -21,3 +21,6 @@ fi
 # Create the directory if it doesn't exist
 mkdir -p ~/.config/nvim/ftplugin
 cp java.lua ~/.config/nvim/ftplugin/java.lua || { echo "Failed to copy java.lua"; exit 1; }
+
+# Copy coc.nvim settings to ~/.config/nvim/coc-settings.json
+cp coc-settings.json ~/.config/nvim/coc-settings.json || { echo "Failed to copy coc-settings.json"; exit 1; }

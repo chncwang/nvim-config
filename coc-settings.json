@@ -1,0 +1,13 @@
+{
+  "python.jediEnabled": false,
+  "python.linting.enabled": false,
+  "python.linting.pylintEnabled": false,
+  "diagnostic.enabled": false,
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.signatureHelp.enable": true,
+  "coc.source.around.priority": 3,
+  "coc.source.buffer.priority": 2,
+  "coc.source.file.priority": 1
+}
