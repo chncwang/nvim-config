@@ -21,6 +21,7 @@ vim.o.incsearch = true
 vim.o.autowrite = true
 vim.o.mouse = 'a'
 vim.o.hlsearch = false
+vim.o.termguicolors = true
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
@@ -90,6 +91,9 @@ require('packer').startup(function()
 
   -- Tag List
   use 'liuchengxu/vista.vim'
+
+  -- vim-illuminate
+  use 'RRethy/vim-illuminate'
 end)
 
 -- NERDTree
