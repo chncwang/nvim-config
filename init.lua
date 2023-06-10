@@ -1,6 +1,8 @@
 -- init.lua
 
 -- General Settings
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.nocompatible = true
 vim.o.background = 'dark'
 vim.o.backspace = 'indent,eol,start'
@@ -36,11 +38,12 @@ map('n', 'tj', '<C-w>j', options)
 map('n', 'tk', '<C-w>k', options)
 map('n', 'tl', '<C-w>l', options)
 map('n', 'tr', '<C-w><C-r>', options)
-map('n', 'tn', ':tnext<CR>', options)
-map('n', 'tp', ':tprevious<CR>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
-map('n', 'ti', ':Nt<CR>:Vista<CR>', options)
 map('n', 'tt', ':split | terminal<CR>', options)
+map('n', 'ti', ':NvimTreeOpen<CR>:Vista<CR>', options)
+map('n', 'bn', ':bnext<CR>', options)
+map('n', 'bp', ':bprevious<CR>', options)
+map('n', 'bq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
 map('v', '<C-x>', '"+x', options)
 map('v', '<C-c>', '"+y', options)
 map('i', '<C-v>', '<Esc>"+p', options)
@@ -56,11 +59,27 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- file explorer
-  use 'preservim/nerdtree'
-  use 'nvim-tree/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons'
+    },
+    config = function()
+      require('nvim-tree').setup({
+        sort_by = 'case_sensitive',
+        view = {
+          side = 'left',
+          width = 40,
+        },
+        filters = {
+          dotfiles = true
+        }
+      })
+    end
+  }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', tag = '0.1.2',
     requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} }
   }
 
@@ -96,21 +115,7 @@ require('packer').startup(function()
   use 'RRethy/vim-illuminate'
 end)
 
--- NERDTree
-vim.g.NERDTree_title = "NERDTree"
-vim.g.NERDTreeDirArrowExpandable = '▸'
-vim.g.NERDTreeDirArrowCollapsible = '▾'
-vim.g.NERDTreeWinPos = 'left'
-vim.g.NERDTreeWinSize = 30
-vim.g.NERDTreeMinimalUI = 1
-vim.g.NERDChristmasTree = 0
-vim.g.NERDTreeShowBookmarks = 1
-vim.g.NERDTreeShowFiles = 1
-vim.g.NERDTreeShowLineNumbers = 1
-vim.g.NERDTreeChDirMode = 2
-vim.g.NERDTreeMouseMode = 1
-
-vim.cmd([[command Nt NERDTree]])
+-- Nvim Tree
 
 -- LSP Config
 local lspconfig = require('lspconfig')
