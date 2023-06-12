@@ -88,7 +88,6 @@ require('packer').startup(function()
   use 'terryma/vim-expand-region'
 
   -- git
-  use 'Xuyuanp/nerdtree-git-plugin'
   use 'tpope/vim-fugitive'
 
   -- interface
