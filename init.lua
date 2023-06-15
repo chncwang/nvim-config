@@ -132,7 +132,7 @@ vim.g.ale_fixers = {
     python = {'black', 'isort'}
 }
 vim.g.ale_fix_on_save = 1
-vim.g.ale_python_flake8_options = '--max-line-length=120 --ignore=E203'
+vim.g.ale_python_flake8_options = '--max-line-length=120 --ignore=E203,W503'
 vim.g.ale_python_black_options = '--line-length=120'
 vim.g.ale_echo_msg_error_str = '%code: %%s'
 vim.o.textwidth = 120
