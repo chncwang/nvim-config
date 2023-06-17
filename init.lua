@@ -25,6 +25,8 @@ vim.o.autowrite = true
 vim.o.mouse = 'a'
 vim.o.hlsearch = false
 vim.o.termguicolors = true
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
@@ -44,7 +46,8 @@ map('n', 'tt', ':split | terminal<CR>', options)
 map('n', 'ti', ':NvimTreeOpen<CR>:Vista<CR>', options)
 map('n', 'bn', ':bnext<CR>', options)
 map('n', 'bp', ':bprevious<CR>', options)
-map('n', 'bq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
+map('n', 'tq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
+map('n', 'bq', ':split<CR>:bnext<CR><C-w>j:q<CR>', options)
 map('v', '<C-x>', '"+x', options)
 map('v', '<C-c>', '"+y', options)
 map('i', '<C-v>', '<Esc>"+p', options)
