@@ -1,7 +1,7 @@
 -- init.lua
 
 -- General Settings
-vim.api.nvim_command('autocmd FileType python setlocal colorcolumn=120')
+vim.api.nvim_command('autocmd FileType python setlocal colorcolumn=121')
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.nocompatible = true
