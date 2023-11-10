@@ -112,9 +112,10 @@ require('packer').startup(function()
 
   -- vim-illuminate
   use 'RRethy/vim-illuminate'
-end)
 
--- Nvim Tree
+  -- Vista
+  use 'liuchengxu/vista.vim'
+end)
 
 -- LSP Config
 local lspconfig = require('lspconfig')
