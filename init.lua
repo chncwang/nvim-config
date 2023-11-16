@@ -115,22 +115,31 @@ require('packer').startup(function()
 
   -- Vista
   use 'liuchengxu/vista.vim'
+
+  -- Install and configure bash-language-server
+  use {
+    'bash-lsp/bash-language-server',
+    ft = 'sh',
+  }
 end)
 
 -- LSP Config
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
+lspconfig.bashls.setup{}
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
 map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
 
 -- ale
 vim.g.ale_linters = {
-    python = {'flake8'}
+    python = {'flake8'},
+    sh = {'shellcheck'},
 }
 vim.g.syntactic_python_checkers = {'flake8'}
 
 vim.g.ale_fixers = {
-    python = {'black', 'isort'}
+    python = {'black', 'isort'},
+    sh = {'shfmt'},
 }
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_flake8_options = '--max-line-length=120 --ignore=E203,E402,W503'
