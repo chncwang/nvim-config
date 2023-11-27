@@ -43,7 +43,7 @@ map('n', 'tl', '<C-w>l', options)
 map('n', 'tr', '<C-w><C-r>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
 map('n', 'tt', ':split | terminal<CR>', options)
-map('n', 'ti', ':NvimTreeOpen<CR>', options)
+map('n', 'ti', ':NvimTreeOpen<CR>:Vista<CR>', options)
 map('n', 'bn', ':bnext<CR>', options)
 map('n', 'bp', ':bprevious<CR>', options)
 map('n', 'tq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
@@ -115,6 +115,9 @@ require('packer').startup(function()
 
   -- Vista
   use 'liuchengxu/vista.vim'
+
+  -- bufdelete
+  use 'famiu/bufdelete.nvim'
 
   -- Install and configure bash-language-server
   use {
