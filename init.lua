@@ -130,6 +130,14 @@ end)
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
 lspconfig.bashls.setup{}
+lspconfig.clangd.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  cmd = { 'clangd', '--background-index', '--clang-tidy', '--completion-style=bundled', '--header-insertion=iwyu', '--suggest-missing-includes', '--cross-file-rename' },
+}
+
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
 map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
 
@@ -137,6 +145,7 @@ map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
 vim.g.ale_linters = {
     python = {'flake8'},
     sh = {'shellcheck'},
+    cpp = {},
 }
 vim.g.syntactic_python_checkers = {'flake8'}
 
