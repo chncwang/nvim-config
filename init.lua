@@ -2,6 +2,7 @@
 
 -- General Settings
 vim.api.nvim_command('autocmd FileType python setlocal colorcolumn=121')
+vim.api.nvim_command('autocmd FileType cpp setlocal colorcolumn=121')
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.nocompatible = true
@@ -135,7 +136,15 @@ lspconfig.clangd.setup{
   flags = {
     debounce_text_changes = 150,
   },
-  cmd = { 'clangd', '--background-index', '--clang-tidy', '--completion-style=bundled', '--header-insertion=iwyu', '--suggest-missing-includes', '--cross-file-rename' },
+  cmd = { 'clangd',
+    '--background-index',
+    '--clang-tidy',
+    '--completion-style=bundled',
+    '--header-insertion=iwyu',
+    '--suggest-missing-includes',
+    '--cross-file-rename', 
+    '--std=c++17',
+  }
 }
 
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
@@ -151,6 +160,7 @@ vim.g.syntactic_python_checkers = {'flake8'}
 
 vim.g.ale_fixers = {
     python = {'black', 'isort'},
+    cpp = {'clang-format'},
     sh = {'shfmt'},
 }
 vim.g.ale_fix_on_save = 1
