@@ -5,7 +5,6 @@ vim.api.nvim_command('autocmd FileType python setlocal colorcolumn=121')
 vim.api.nvim_command('autocmd FileType cpp setlocal colorcolumn=121')
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.o.nocompatible = true
 vim.o.background = 'dark'
 vim.o.backspace = 'indent,eol,start'
 vim.o.expandtab = true
@@ -44,7 +43,7 @@ map('n', 'tl', '<C-w>l', options)
 map('n', 'tr', '<C-w><C-r>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
 map('n', 'tt', ':split | terminal<CR>', options)
-map('n', 'ti', ':NvimTreeOpen<CR>:Vista<CR>', options)
+map('n', 'ti', ':NERDTree<CR>:Vista<CR>', options)
 map('n', 'bn', ':bnext<CR>', options)
 map('n', 'bp', ':bprevious<CR>', options)
 map('n', 'tq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
@@ -63,24 +62,7 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- file explorer
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons'
-    },
-    config = function()
-      require('nvim-tree').setup({
-        sort_by = 'case_sensitive',
-        view = {
-          side = 'left',
-          width = 40,
-        },
-        filters = {
-          dotfiles = true
-        }
-      })
-    end
-  }
+  use 'preservim/nerdtree'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
@@ -100,7 +82,12 @@ require('packer').startup(function()
   -- python
   use 'neovim/nvim-lspconfig'
   use 'dense-analysis/ale'
-  use 'neoclide/coc.nvim'
+
+  -- coc using release branch
+  use {
+    'neoclide/coc.nvim',
+    branch = 'release'
+  }
 
   -- Java
   use 'mfussenegger/nvim-jdtls'
