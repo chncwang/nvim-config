@@ -43,7 +43,7 @@ map('n', 'tl', '<C-w>l', options)
 map('n', 'tr', '<C-w><C-r>', options)
 map('n', 'tw', '<ESC><C-w>k:q<CR>', options)
 map('n', 'tt', ':split | terminal<CR>', options)
-map('n', 'ti', ':NERDTree<CR>:Vista<CR>', options)
+map('n', 'ti', ':NvimTreeOpen<CR>:Vista<CR>', options)
 map('n', 'bn', ':bnext<CR>', options)
 map('n', 'bp', ':bprevious<CR>', options)
 map('n', 'tq', ':split<CR>:bnext<CR><C-w>ja<C-d>', options)
@@ -62,8 +62,24 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- file explorer
-  use 'preservim/nerdtree'
-  use 'Xuyuanp/nerdtree-git-plugin'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup({
+        sort_by = 'case_sensitive',
+        view = {
+          side = 'left',
+          width = 40,
+        },
+        filters = {
+          dotfiles = true
+        }
+      })
+    end
+  }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
@@ -119,6 +135,7 @@ end)
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup{}
 lspconfig.bashls.setup{}
+-- You need to install libstdc++-12-dev and clangd
 lspconfig.clangd.setup{
   on_attach = on_attach,
   flags = {
@@ -127,11 +144,11 @@ lspconfig.clangd.setup{
   cmd = { 'clangd',
     '--background-index',
     '--clang-tidy',
+    '--log=verbose',
     '--completion-style=bundled',
     '--header-insertion=iwyu',
     '--suggest-missing-includes',
     '--cross-file-rename', 
-    '--std=c++17',
   }
 }
 
