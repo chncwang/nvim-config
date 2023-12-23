@@ -148,7 +148,6 @@ lspconfig.clangd.setup{
     '--header-insertion=iwyu',
     '--suggest-missing-includes',
     '--cross-file-rename', 
-    '--offset-encoding=UTF-16',
   }
 }
 
