@@ -1,4 +1,19 @@
 {
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git"],
+      "args": [
+        "--background-index",
+        "--clang-tidy",
+        "--suggest-missing-includes",
+        "--cross-file-rename",
+        "--completion-style=bundled",
+        "--header-insertion=iwyu",
+      ],
+      "filetypes": ["c", "cpp"]
+    },
+  },
   "python.jediEnabled": false,
   "python.linting.enabled": false,
   "python.linting.pylintEnabled": false,

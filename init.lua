@@ -137,7 +137,6 @@ lspconfig.pyright.setup{}
 lspconfig.bashls.setup{}
 -- You need to install libstdc++-12-dev and clangd
 lspconfig.clangd.setup{
-  on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
   },
