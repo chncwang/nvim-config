@@ -150,6 +150,13 @@ lspconfig.clangd.setup{
     '--cross-file-rename', 
   }
 }
+--[[
+You need to create a .clangd file in your project root directory
+to enable reporting warnings:
+CompileFlags:
+  Add: [-Wall]
+--]]
+
 
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
 map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
