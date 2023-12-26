@@ -105,6 +105,11 @@ require('packer').startup(function()
     'neoclide/coc.nvim',
     branch = 'release'
   }
+  --[[
+    You need to pip install jedi in your python environment
+    CocInstall coc-pyright
+    CocInstall coc-jedi
+  --]]
 
   -- Java
   use 'mfussenegger/nvim-jdtls'
