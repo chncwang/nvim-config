@@ -55,26 +55,6 @@ require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- file explorer
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('nvim-tree').setup({
-        sort_by = 'case_sensitive',
-        view = {
-          side = 'left',
-          width = 40,
-        },
-        filters = {
-          dotfiles = true
-        }
-      })
-    end
-  }
-
   -- quick edit
   use 'hrp/EnhancedCommentify'
   use 'terryma/vim-expand-region'
@@ -89,10 +69,6 @@ require('packer').startup(function()
   use 'github/copilot.vim'
 
   -- Syntax Highlighting
-  use 'sheerun/vim-polyglot'
+--   use 'sheerun/vim-polyglot'
   use 'RRethy/vim-illuminate'
-
-  -- bufdelete
-  use 'famiu/bufdelete.nvim'
 end)
-
