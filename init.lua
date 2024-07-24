@@ -13,7 +13,6 @@ vim.o.autoindent = true
 vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.softtabstop = 4
-vim.o.termencoding = 'utf-8'
 vim.wo.number = true
 vim.o.incsearch = true
 vim.o.autowrite = true
