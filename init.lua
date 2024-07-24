@@ -1,10 +1,6 @@
 -- init.lua
 
 -- General Settings
-vim.api.nvim_command('autocmd FileType python setlocal colorcolumn=121')
-vim.api.nvim_command('autocmd FileType cpp setlocal colorcolumn=121')
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.o.background = 'dark'
 vim.o.backspace = 'indent,eol,start'
 vim.o.expandtab = true
@@ -16,7 +12,6 @@ vim.o.langmenu = 'en'
 vim.o.autoindent = true
 vim.o.shiftwidth = 4
 vim.o.smartindent = true
-vim.o.cindent = false
 vim.o.softtabstop = 4
 vim.o.termencoding = 'utf-8'
 vim.wo.number = true
@@ -80,11 +75,6 @@ require('packer').startup(function()
       })
     end
   }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-    requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} }
-  }
 
   -- quick edit
   use 'hrp/EnhancedCommentify'
@@ -96,103 +86,12 @@ require('packer').startup(function()
   -- interface
   use 'vim-airline/vim-airline'
 
-  -- python
-  use 'neovim/nvim-lspconfig'
-  use 'dense-analysis/ale'
-
-  -- coc using release branch
-  use {
-    'neoclide/coc.nvim',
-    branch = 'release'
-  }
-  --[[
-    You need to pip install jedi in your python environment
-    CocInstall coc-pyright
-    CocInstall coc-jedi
-  --]]
-
-  -- Java
-  use 'mfussenegger/nvim-jdtls'
-
   -- Copilot
   use 'github/copilot.vim'
 
   -- Syntax Highlighting
   use 'sheerun/vim-polyglot'
 
-  -- vim-illuminate
-  use 'RRethy/vim-illuminate'
-
-  -- Vista
-  use 'liuchengxu/vista.vim'
-
   -- bufdelete
   use 'famiu/bufdelete.nvim'
-
-  -- Install and configure bash-language-server
-  use {
-    'bash-lsp/bash-language-server',
-    ft = 'sh',
-  }
 end)
-
--- LSP Config
-local lspconfig = require('lspconfig')
-lspconfig.pyright.setup{}
-lspconfig.bashls.setup{}
--- You need to install libstdc++-12-dev and clangd
-lspconfig.clangd.setup{
-  flags = {
-    debounce_text_changes = 150,
-  },
-  cmd = { 'clangd',
-    '--background-index',
-    '--clang-tidy',
-    '--log=verbose',
-    '--completion-style=bundled',
-    '--header-insertion=iwyu',
-    '--suggest-missing-includes',
-    '--cross-file-rename', 
-  }
-}
---[[
-You need to create a .clangd file in your project root directory
-to enable reporting warnings:
-CompileFlags:
-  Add: [-Wall]
---]]
-
-
-map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', options)
-map('n', '<leader>fr', ':lua vim.lsp.buf.references()<CR>', options)
-
--- ale
-vim.g.ale_linters = {
-    python = {'flake8'},
-    sh = {'shellcheck'},
-    cpp = {},
-}
-vim.g.syntactic_python_checkers = {'flake8'}
-
-vim.g.ale_fixers = {
-    python = {'black', 'isort'},
-    cpp = {'clang-format'},
-    sh = {'shfmt'},
-}
-vim.g.ale_fix_on_save = 1
-vim.g.ale_python_flake8_options = '--max-line-length=120 --ignore=E203,E402,W503'
-vim.g.ale_python_black_options = '--line-length=120'
-vim.g.ale_echo_msg_error_str = '%code: %%s'
-vim.o.textwidth = 120
-vim.o.wrap = true
-map('n', '<leader>a', ':ALEDetail<CR>', options)
-
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
--- vim-polylgot
-vim.g.polylgot_disabled = {'json'}
