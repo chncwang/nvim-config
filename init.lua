@@ -90,7 +90,9 @@ require('packer').startup(function()
 
   -- Syntax Highlighting
   use 'sheerun/vim-polyglot'
+  use 'RRethy/vim-illuminate'
 
   -- bufdelete
   use 'famiu/bufdelete.nvim'
 end)
+
