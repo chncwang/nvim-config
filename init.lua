@@ -58,6 +58,7 @@ require('packer').startup(function()
   -- quick edit
   use 'hrp/EnhancedCommentify'
   use 'terryma/vim-expand-region'
+  use 'andymass/vim-matchup'
 
   -- git
   use 'tpope/vim-fugitive'
@@ -72,3 +73,6 @@ require('packer').startup(function()
 --   use 'sheerun/vim-polyglot'
   use 'RRethy/vim-illuminate'
 end)
+
+-- vim-matchup configuration
+vim.g.matchup_matchparen_offscreen = { method = 'popup' }
