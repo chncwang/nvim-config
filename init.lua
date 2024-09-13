@@ -70,8 +70,10 @@ require('packer').startup(function()
   use 'github/copilot.vim'
 
   -- Syntax Highlighting
---   use 'sheerun/vim-polyglot'
   use 'RRethy/vim-illuminate'
+
+  -- WakaTime
+  use 'wakatime/vim-wakatime'
 end)
 
 -- vim-matchup configuration
